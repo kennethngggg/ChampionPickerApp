@@ -3,23 +3,20 @@ let champions = [];
 let currentQuestionIndex = 0;
 
 async function loadInitialData() {
-    await fetchQuestions();
-    await fetchChampionData();
+    await fetchData();
     displayQuestion();
 }
 
-async function fetchQuestions() {
-    const response = await fetch('questions.csv');
-    const data = await response.text();
-    questions = data.split('\n').filter(line => line.trim().length > 0);
-}
-
-
-async function fetchChampionData() {
+async function fetchData() {
     const response = await fetch('championData.csv');
     const data = await response.text();
-    const rows = data.split('\n').slice(1);
-    champions = rows.map(row => {
+    const rows = data.split('\n');
+    
+    // Extracting questions
+    questions = rows[0].split(',').slice(1);
+
+    // Extracting champion data
+    champions = rows.slice(1).map(row => {
         const columns = row.split(',');
         return {
             name: columns[0],
@@ -27,6 +24,7 @@ async function fetchChampionData() {
         };
     });
 }
+
 
 function displayQuestion() {
     const questionCard = document.querySelector('.question-text');
@@ -81,10 +79,11 @@ function displayFinalChampionRecommendation() {
     const topChampions = getTopChampions(5);
     topChampions.forEach(champion => {
         const listItem = document.createElement('li');
-        listItem.textContent = champion.name;
+        listItem.textContent = `${champion.name} (Score: ${champion.score})`;
         finalList.appendChild(listItem);
     });
 }
+
 
 function getTopChampions(topN) {
     champions.sort((a, b) => b.score - a.score);
