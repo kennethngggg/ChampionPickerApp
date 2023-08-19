@@ -1,6 +1,47 @@
+@font-face {
+    font-family: 'Spiegel';
+    src: url('Assets/Spiegel-Regular.ttf') format('truetype');
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --font-primary: Spiegel, Arial, "Arial Narrow", sans-serif;
+    --line-height-standard: 1.15;
+    --color-primary: #111111;   /* replace with your primary color */
+    --color-secondary: #f7f7f7; /* replace with your secondary color */
+}
+.navbar {
+    background-color: var(--color-primary);
+    padding: 30px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar-logo {
+    height: 25px; /* You can adjust this according to your logo's aspect ratio */
+}
+
+.lol-logo {
+    height: 40px;  /* Adjust this value as needed */
+    margin-left: 20px;  /* This provides some space between the two logos */
+}
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: var(--font-primary);
+    line-height: var(--line-height-standard);
     text-align: center;
+    background-color: #f2f2f2;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 100%;
+    margin: 0px 0;
+    padding: 0;
+    position: static;
 }
 
 .hidden {
@@ -11,19 +52,32 @@ body {
     border: 1px solid black;
     padding: 20px;
     margin: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Adding a subtle shadow for depth */
 }
 
 .question-text {
     font-size: 24px;
     margin-bottom: 20px;
+    color: var(--color-primary); /* Using the primary color for emphasis */
 }
 
 .options button {
     margin-right: 10px;
     padding: 10px 20px;
     font-size: 18px;
+    background-color: var(--color-primary); /* Using the primary color as the background for buttons */
+    color: white;  /* White text for contrast against the primary color */
+    border: none;  /* Removing the default border for a sleeker look */
+    transition: 0.3s ease; /* Smooth transition for hover effects */
+
+    /* Adding hover effect for buttons */
+    &:hover {
+        background-color: var(--color-secondary);
+        color: var(--color-primary);
+    }
 }
 
 .champion-recommendation h2, #endScreen h2 {
     font-size: 20px;
+    color: var(--color-secondary);  /* Using the secondary color for sub-headings for a consistent theme */
 }
