@@ -8,14 +8,21 @@
 </head>
 <body>
     <header class="navbar">
-        <img src="Assets/Riot Games logo (White).png" alt="Riot Games Logo" class="navbar-logo">
-        <img src="Assets/LoL logo.png" alt="League of Legends Logo" class="lol-logo">
-        <!-- Other navigational elements can be added here in the future if needed -->
+        <div class="left-logos">
+            <a href="https://www.riotgames.com/" target="_blank" rel="noopener noreferrer">
+                <img src="Assets/Riot Games logo (White).png" alt="Riot Games Logo" class="navbar-logo" id="riotLogo">
+            </a>
+            <a href="https://www.leagueoflegends.com/" target="_blank" rel="noopener noreferrer">
+                <img src="Assets/LoL logo.png" alt="League of Legends Logo" class="lol-logo">
+            </a>
+        </div>
+        <img src="Assets/Navigation right.png" alt="Right Logo" class="navbar-right-logo">
     </header>
-    
+
     <div id="app">
         <div class="question-card">
             <h2 class="question-text">Sample Question</h2>
+            <img src="" alt="Question GIF" class="question-gif">
             <div class="options">
                 <button onclick="handleOptionClick('Yes')">Yes</button>
                 <button onclick="handleOptionClick('Maybe')">Maybe</button>

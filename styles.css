@@ -23,13 +23,28 @@ html, body {
 }
 
 .navbar-logo {
-    height: 25px; /* You can adjust this according to your logo's aspect ratio */
+    height: 30px; /* You can adjust this according to your logo's aspect ratio */
 }
 
 .lol-logo {
-    height: 40px;  /* Adjust this value as needed */
+    height: 35px;  /* Adjust this value as needed */
     margin-left: 20px;  /* This provides some space between the two logos */
 }
+#riotLogo:hover {
+    content: url("Assets/Riot\ Games\ logo\ \(Red\).png");
+}
+
+.navbar-right-logo {
+    height: 45px;
+    margin-right: 20px;
+}
+
+.navbar-logo, .lol-logo, .navbar-right-logo {
+    display: inline-block; 
+    vertical-align: middle; 
+}
+
+
 
 body {
     font-family: var(--font-primary);
@@ -49,33 +64,49 @@ body {
 }
 
 .question-card, .champion-recommendation, #endScreen {
-    border: 1px solid black;
+    /*border: 1px solid black;*/
     padding: 20px;
-    margin: 20px;
+    margin: 20px auto;  /* Center the card by setting left and right margins to auto */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Adding a subtle shadow for depth */
+    width: 500px;  /* Setting the width to 250px */
+    background-color: #FAFAFA;  /* Off-white color, adjust as needed */
+    display: flex;  /* New property to enable flexbox */
+    flex-direction: column;  /* New property to stack children vertically */
+    justify-content: center;  /* New property to vertically align children in the middle */
+    ali
 }
 
 .question-text {
     font-size: 24px;
+    min-height: 70px;
     margin-bottom: 20px;
     color: var(--color-primary); /* Using the primary color for emphasis */
 }
 
+.gif-image {
+    width: 300px;
+    height: 300px;
+    display: block;  /* To center the gif in the middle of the card */
+    margin: 10px auto;  /* Top and bottom margin set to 10px, left and right margins auto to center the gif */
+}
+
 .options button {
-    margin-right: 10px;
+    margin: 20px 10px 10px 0;  /* top, right, bottom, left */
     padding: 10px 20px;
     font-size: 18px;
-    background-color: var(--color-primary); /* Using the primary color as the background for buttons */
-    color: white;  /* White text for contrast against the primary color */
-    border: none;  /* Removing the default border for a sleeker look */
-    transition: 0.3s ease; /* Smooth transition for hover effects */
-
-    /* Adding hover effect for buttons */
-    &:hover {
-        background-color: var(--color-secondary);
-        color: var(--color-primary);
-    }
+    background-color: var(--color-primary);
+    color: white;
+    border: none;
+    transition: 0.3s ease;
+    border-radius: 4px;
 }
+
+.options button:hover {
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);  /* Adding a thin black border on hover */
+}
+
 
 .champion-recommendation h2, #endScreen h2 {
     font-size: 20px;

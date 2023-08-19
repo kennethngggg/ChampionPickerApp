@@ -1,5 +1,6 @@
 let questions = [];
 let champions = [];
+let gifs = [];
 let significanceFactors = []; // <-- add this
 let currentQuestionIndex = 0;
 
@@ -28,11 +29,12 @@ async function fetchChampionData() {
     const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
 
     // Extract questions, significance factors, and champion data
-    questions = jsonData[0].slice(1); // because first cell is probably empty or has a header like "Champions"
-    
-    significanceFactors = jsonData[1].slice(1).map(Number);
+    questions = jsonData[0].slice(1);
+    gifs = jsonData[1].slice(1);  // New line to extract gifs
 
-    champions = jsonData.slice(2).map(row => { 
+    significanceFactors = jsonData[2].slice(1).map(Number);
+
+    champions = jsonData.slice(3).map(row => { 
         return {
             name: row[0],
             weights: row.slice(1).map(Number),
@@ -41,11 +43,14 @@ async function fetchChampionData() {
     });
 }
 
-
 function displayQuestion() {
     const questionCard = document.querySelector('.question-text');
     questionCard.textContent = questions[currentQuestionIndex];
+    
+    const gifElement = document.querySelector('.question-gif');
+    gifElement.src = `Assets/Question GIFs/${gifs[currentQuestionIndex]}`;
 }
+
 
 function endQuiz() {
     document.querySelector('.question-card').style.display = 'none';
