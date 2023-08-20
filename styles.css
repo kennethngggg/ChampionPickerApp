@@ -44,8 +44,6 @@ html, body {
     vertical-align: middle; 
 }
 
-
-
 body {
     font-family: var(--font-primary);
     line-height: var(--line-height-standard);
@@ -83,11 +81,12 @@ body {
     color: var(--color-primary); /* Using the primary color for emphasis */
 }
 
-.gif-image {
+.question-video {
     width: 300px;
     height: 300px;
-    display: block;  /* To center the gif in the middle of the card */
-    margin: 10px auto;  /* Top and bottom margin set to 10px, left and right margins auto to center the gif */
+    display: block;  /* To center the video in the middle of the card */
+    margin: 10px auto;  /* Top and bottom margin set to 10px, left and right margins auto to center the video */
+    object-fit: cover; /* This will ensure that the video covers the entire dimension you've set without distorting its aspect ratio. Useful if your videos have varying aspect ratios. */
 }
 
 .options button {

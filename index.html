@@ -22,7 +22,9 @@
     <div id="app">
         <div class="question-card">
             <h2 class="question-text">Sample Question</h2>
-            <img src="" alt="Question GIF" class="question-gif">
+            <video autoplay loop muted class="question-video" playsinline>
+                <source src="" type="video/mp4">
+            </video>            
             <div class="options">
                 <button onclick="handleOptionClick('Yes')">Yes</button>
                 <button onclick="handleOptionClick('Maybe')">Maybe</button>
@@ -30,8 +32,8 @@
             </div>
         </div>
 
-        <!-- Debugging champion card -->
-        <div class="champion-card debugging-card">
+        <!-- Debugging champion card (hidden by default) -->
+        <div class="champion-card debugging-card" style="display:none">
             <h2>Current Top Champions</h2>
              <ul id="debugChampionList"></ul>
         </div>
@@ -39,12 +41,33 @@
         <!-- End screen -->
         <div id="endScreen" style="display:none">
             <div class="champion-card">
-                <h2>Try out these champions</h2>
-                <ul id="finalChampionList"></ul>
+                <h2>Recommended Champions for You</h2>
+
+                <!-- Top Champion -->
+                <div class="top-champion">
+                    <a href="" target="_blank" id="topChampionLink">
+                        <img src="" alt="Top Champion Logo" class="champion-logo" id="topChampionImage">
+                        <p id="topChampionName">Champion Name</p>
+                    </a>
+                </div>
+
+                <!-- Next 4 Champions -->
+                <div class="next-champions" id="nextChampionsContainer">
+                    <!-- Dynamically populated by JavaScript -->
+                </div>
+
+                <!-- Dropdown for Next 10 Champions -->
+                <details>
+                    <summary>See More Recommendations</summary>
+                    <div class="additional-champions" id="additionalChampionsContainer">
+                        <!-- Dynamically populated by JavaScript -->
+                    </div>
+                </details>
                 <button onclick="resetApp()">Try again</button>
             </div>
         </div>
     </div>
+
     <!-- External libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
     <script src="script.js"></script>
