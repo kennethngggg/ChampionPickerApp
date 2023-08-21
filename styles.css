@@ -3,17 +3,32 @@
     src: url('Assets/Spiegel-Regular.ttf') format('truetype');
 }
 
-html, body {
-    margin: 0;
-    padding: 0;
-}
-
+/* Variables and Base Styles */
 :root {
     --font-primary: Spiegel, Arial, "Arial Narrow", sans-serif;
     --line-height-standard: 1.15;
-    --color-primary: #111111;   /* replace with your primary color */
-    --color-secondary: #f7f7f7; /* replace with your secondary color */
+    --color-primary: #111111;
+    --color-secondary: #f7f7f7;
 }
+
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-primary);
+    line-height: var(--line-height-standard);
+    text-align: center;
+    background-color: #f2f2f2;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 100%;
+    position: static;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Navigation Styles */
 .navbar {
     background-color: var(--color-primary);
     padding: 30px 20px;
@@ -22,16 +37,22 @@ html, body {
     justify-content: space-between;
 }
 
+.navbar-logo, .lol-logo, .navbar-right-logo {
+    display: inline-block; 
+    vertical-align: middle; 
+}
+
 .navbar-logo {
-    height: 30px; /* You can adjust this according to your logo's aspect ratio */
+    height: 30px;
 }
 
 .lol-logo {
-    height: 35px;  /* Adjust this value as needed */
-    margin-left: 20px;  /* This provides some space between the two logos */
+    height: 35px;
+    margin-left: 20px;
 }
+
 #riotLogo:hover {
-    content: url("Assets/Riot\ Games\ logo\ \(Red\).png");
+    content: url("Assets/riot_games_logo_red.png");
 }
 
 .navbar-right-logo {
@@ -39,46 +60,23 @@ html, body {
     margin-right: 20px;
 }
 
-.navbar-logo, .lol-logo, .navbar-right-logo {
-    display: inline-block; 
-    vertical-align: middle; 
-}
-
-body {
-    font-family: var(--font-primary);
-    line-height: var(--line-height-standard);
-    text-align: center;
-    background-color: #f2f2f2;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    width: 100%;
-    margin: 0px 0;
-    padding: 0;
-    position: static;
-}
-
-.hidden {
-    display: none;
-}
-
+/* Question Card Styles */
 .question-card, .champion-recommendation, #endScreen {
-    /*border: 1px solid black;*/
     padding: 20px;
-    margin: 20px auto;  /* Center the card by setting left and right margins to auto */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Adding a subtle shadow for depth */
-    width: 500px;  /* Setting the width to 250px */
-    background-color: #FAFAFA;  /* Off-white color, adjust as needed */
-    display: flex;  /* New property to enable flexbox */
-    flex-direction: column;  /* New property to stack children vertically */
-    justify-content: center;  /* New property to vertically align children in the middle */
-    ali
+    margin: 20px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 500px;
+    background-color: #FAFAFA;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .question-text {
     font-size: 24px;
     min-height: 70px;
     margin-bottom: 20px;
-    color: var(--color-primary); /* Using the primary color for emphasis */
+    color: var(--color-primary);
 }
 
 .question-video {
@@ -106,8 +104,149 @@ body {
     border: 1px solid var(--color-primary);  /* Adding a thin black border on hover */
 }
 
-
 .champion-recommendation h2, #endScreen h2 {
     font-size: 20px;
     color: var(--color-secondary);  /* Using the secondary color for sub-headings for a consistent theme */
+}
+
+#endScreen {
+    /* Keeps inherited properties from .question-card, .champion-recommendation, etc. */
+}
+
+#topChampions .champion {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px; /* Adjust for spacing between champions */
+}
+
+.ranking {
+    font-size: 24px; /* Adjust size as needed */
+    margin-right: 10px;
+    color: var(--color-primary); /* Using the primary color */
+}
+
+.champion-logo {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.champion-name {
+    font-size: 18px;
+    color: var(--color-primary);
+    margin-left: 10px;
+}
+
+.separator {
+    border: none;
+    height: 1px;
+    background-color: #D0D0D0; /* Soft grey */
+    margin: 20px 0;
+}
+
+#nextChampions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#nextChampions .champion {
+    width: 19%; /* Allows 5 champions per row with slight space between */
+    text-align: center;
+    margin-bottom: 15px; /* Adjust for spacing between rows */
+}
+
+.champion-section-title {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: 1px;  /* Adjust this value to decrease the margin above the title */
+}
+
+.champion-section-description {
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.champion-entry {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.champion-entry a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.champion-ranking {
+    font-size: 1.5em;
+    margin-right: 15px; /* Adjust as needed */
+}
+
+.champion-logo {
+    width: 50px; /* Adjust to the desired size */
+    height: 50px; /* Adjust to the desired size */
+}
+
+.champion-name {
+    margin-left: 10px; /* You can adjust this value as needed */
+}
+
+/* Added a main container style. You can wrap your main content with a div of this class */
+.main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;  /* Slight padding on left and right for small screens */
+}
+
+/* Media query for tablet and mobile screens */
+@media screen and (max-width: 768px) {
+    body {
+        font-size: 16px;
+    }
+
+    .navbar {
+        flex-direction: column;  /* Stack items vertically for smaller screens */
+        padding: 15px 10px;  /* Reduced padding for smaller screens */
+    }
+
+    .navbar-logo, .lol-logo, .navbar-right-logo {
+        margin-bottom: 10px;  /* Add a margin at the bottom to separate items */
+    }
+
+    .navbar-right-logo {
+        display: none;  /* This will hide the navbar-right-logo on small screens */
+    }
+
+    .question-card, .champion-recommendation, #endScreen {
+        width: 100%;  /* Make these elements full width for smaller screens */
+        box-shadow: none;  /* Optionally, you can remove the shadow for a cleaner look on mobile */
+    }
+
+    .question-text {
+        font-size: 20px;  /* Reduce font size slightly for small screens */
+    }
+
+    .question-video {
+        width: 80%;  /* Adjust video size to be a bit smaller on mobile devices */
+    }
+
+    .options button {
+        margin: 10px 5px;  /* Reduced margin for buttons */
+    }
+}
+
+
+/* For very small screens (like older phones) */
+@media screen and (max-width: 480px) {
+    .navbar-logo, .lol-logo, .navbar-right-logo {
+        height: 20px;  /* Adjust these values based on how they look */
+    }
+
+    .question-video {
+        width: 90%;  /* This will occupy more space on very small screens */
+    }
 }

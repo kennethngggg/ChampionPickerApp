@@ -42,27 +42,32 @@
         <div id="endScreen" style="display:none">
             <div class="champion-card">
                 <h2>Recommended Champions for You</h2>
+                
+                <!-- Above the #topChampions container -->
+                <h3 class="champion-section-title">Top 5 Recommended Champions</h3>
+                <p class="champion-section-description">Based on your answers, these champions suit your playstyle. Give them a try!</p>
 
-                <!-- Top Champion -->
-                <div class="top-champion">
-                    <a href="" target="_blank" id="topChampionLink">
-                        <img src="" alt="Top Champion Logo" class="champion-logo" id="topChampionImage">
-                        <p id="topChampionName">Champion Name</p>
-                    </a>
+                <!-- Top 5 Champions -->
+                <div id="topChampions">
+                    <!-- Each champion will look something like:
+                        <div class="champion">
+                            <span class="ranking">1</span>
+                            <a href="" target="_blank">
+                                <img src="" alt="Champion Logo" class="champion-logo">
+                                <p class="champion-name">Champion Name</p>
+                            </a>
+                        </div>
+                    Dynamically populated by JavaScript -->
                 </div>
 
-                <!-- Next 4 Champions -->
-                <div class="next-champions" id="nextChampionsContainer">
-                    <!-- Dynamically populated by JavaScript -->
-                </div>
+                <!-- Soft separator line -->
+                <hr class="separator">
 
-                <!-- Dropdown for Next 10 Champions -->
-                <details>
-                    <summary>See More Recommendations</summary>
-                    <div class="additional-champions" id="additionalChampionsContainer">
-                        <!-- Dynamically populated by JavaScript -->
-                    </div>
-                </details>
+                <!-- Next 10 Champions -->
+                <div id="nextChampions">
+                    <!-- Dynamically populated by JavaScript, 2 rows of 5 champions -->
+                </div>
+                
                 <button onclick="resetApp()">Try again</button>
             </div>
         </div>

@@ -98,43 +98,69 @@ function handleOptionClick(option) {
 }
 
 function createChampionElement(champion) {
-    const champElement = document.createElement('a');
-    champElement.href = `https://www.leagueoflegends.com/en-sg/champions/${champion.urlName}`;
-    champElement.target = "_blank";  // This will make the link open in a new window or tab
-    champElement.rel = "noopener noreferrer"; // This is for security and performance reasons
-    champElement.innerHTML = `
-        <img src="https://ddragon.leagueoflegends.com/cdn/${latestDDragonVersion}/img/champion/${champion.dataDragonName}.png" alt="${champion.name} Logo" class="champion-logo">
-        <p>${champion.name}</p>
-    `;
+    const champElement = document.createElement('div');
+    champElement.className = "champion-entry";
+
+    const champLink = document.createElement('a');
+    champLink.href = `https://www.leagueoflegends.com/en-sg/champions/${champion.urlName}`;
+    champLink.target = "_blank";
+    champLink.rel = "noopener noreferrer";
+
+    const rankSpan = document.createElement('span');
+    rankSpan.className = "champion-ranking";
+    
+    const champImg = document.createElement('img');
+    champImg.src = `https://ddragon.leagueoflegends.com/cdn/${latestDDragonVersion}/img/champion/${champion.dataDragonName}.png`;
+    champImg.alt = `${champion.name} Logo`;
+    champImg.className = "champion-logo";
+
+    const champName = document.createElement('p');
+    champName.className = "champion-name";
+    champName.textContent = champion.name;
+
+    champLink.appendChild(champImg);
+    champLink.appendChild(champName);
+    champElement.appendChild(rankSpan);
+    champElement.appendChild(champLink);
+
     return champElement;
 }
 
 
+
+
 function displayFinalChampionRecommendation() {
     const topChampions = getTopChampions(5);
+    const nextTopTenChampions = getTopChampions(15).slice(5);
 
-    const topChampionContainer = document.getElementById('topChampionLink');
-    while (topChampionContainer.firstChild) {
-        topChampionContainer.removeChild(topChampionContainer.firstChild);  // clear old data
+    // Top 5 Champions
+    const topChampionsContainer = document.getElementById('topChampions');
+    while (topChampionsContainer.firstChild) {
+        topChampionsContainer.removeChild(topChampionsContainer.firstChild);  // clear old data
     }
-    topChampionContainer.appendChild(createChampionElement(topChampions[0]));
 
-    const nextChampionsContainer = document.getElementById('nextChampionsContainer');
+    topChampions.forEach((champ, index) => {
+        const championWrapper = document.createElement('div');
+        championWrapper.className = 'champion';
+        const rank = document.createElement('span');
+        rank.className = 'ranking';
+        rank.textContent = (index + 1).toString();
+        championWrapper.appendChild(rank);
+        championWrapper.appendChild(createChampionElement(champ));
+        topChampionsContainer.appendChild(championWrapper);
+    });
+
+    // Next 10 Champions
+    const nextChampionsContainer = document.getElementById('nextChampions');
     while (nextChampionsContainer.firstChild) {
         nextChampionsContainer.removeChild(nextChampionsContainer.firstChild);  // clear old data
     }
-    topChampions.slice(1).forEach(champ => {
+
+    nextTopTenChampions.forEach(champ => {
         nextChampionsContainer.appendChild(createChampionElement(champ));
     });
-
-    const additionalChampionsContainer = document.getElementById('additionalChampionsContainer');
-    while (additionalChampionsContainer.firstChild) {
-        additionalChampionsContainer.removeChild(additionalChampionsContainer.firstChild);  // clear old data
-    }
-    getTopChampions(15).slice(5).forEach(champ => {
-        additionalChampionsContainer.appendChild(createChampionElement(champ));
-    });
 }
+
 
 function getTopChampions(topN) {
     champions.sort((a, b) => b.score - a.score);
