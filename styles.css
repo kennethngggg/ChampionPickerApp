@@ -84,7 +84,7 @@ html, body {
 
 .question-video {
     width: 400px;
-    height: 400px;
+    height: auto
     display: block;  /* To center the video in the middle of the card */
     margin: 10px auto;  /* Top and bottom margin set to 10px, left and right margins auto to center the video */
     object-fit: cover; /* This will ensure that the video covers the entire dimension you've set without distorting its aspect ratio. Useful if your videos have varying aspect ratios. */
@@ -236,8 +236,19 @@ html, body {
     }
 
     .question-video {
-        width: 80%;  /* Adjust video size to be a bit smaller on mobile devices */
-        height: auto
+        width: calc(100% - 40px);  /* This sets the width to the full width minus margins on either side */
+        padding-bottom: calc(100% - 40px);  /* This trick ensures a 1:1 aspect ratio */
+        position: relative; 
+        height: 0;
+    }
+
+    .question-video > video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 
     .options button {
@@ -253,6 +264,7 @@ html, body {
     }
 
     .question-video {
-        width: 90%;  /* This will occupy more space on very small screens */
+        width: calc(100% - 20px);  /* Adjust the margins as desired for very small screens */
+        padding-bottom: calc(100% - 20px);
     }
 }
