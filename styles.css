@@ -117,28 +117,49 @@ html, body {
     /* Keeps inherited properties from .question-card, .champion-recommendation, etc. */
 }
 
+#topChampions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;  /* This centers the .champion-list horizontally */
+    background: #e5ffe3;
+    padding: 10px;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+#topChampions .champion-list {
+    width: 250px;  /* This will ensure the container wraps around its content */
+    text-align: left;  /* This will left-align the items inside */
+}
+
 #topChampions .champion {
     display: flex;
     align-items: center;
-    margin-bottom: 15px; /* Adjust for spacing between champions */
+    text-align: center;
+    margin-bottom: 3px;
 }
 
 .ranking {
-    font-size: 24px; /* Adjust size as needed */
+    font-size: 24px;
     margin-right: 10px;
-    color: var(--color-primary); /* Using the primary color */
+    color: var(--color-primary);
+    width: 30px; /* This sets a specific width */
+    display: inline-block; /* To make sure width is applied correctly */
+    text-align: center; /* To align the numbers to the right within their space, ensuring alignment */
 }
 
 .champion-logo {
-    width: 50px;
-    height: 50px;
-    margin-right: 10px;
+    width: 30px;
+    height: 30px;
+    margin-left: 5px; /* Add or reduce the margin-left if needed */
 }
 
 .champion-name {
-    font-size: 18px;
+    font-size: 25px;
     color: var(--color-primary);
     margin-left: 10px;
+    min-width: 140px; /* Replace with the width that corresponds to the longest champion name */
+    display: inline-block; /* Makes sure that the min-width is respected */
 }
 
 .separator {
@@ -151,13 +172,22 @@ html, body {
 #nextChampions {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center; /* This will center the items within the container */
 }
 
 #nextChampions .champion {
-    width: 19%; /* Allows 5 champions per row with slight space between */
+    width: 45%; /* Slightly less than half to account for potential margin/padding */
     text-align: center;
-    margin-bottom: 15px; /* Adjust for spacing between rows */
+    margin-bottom: 15px;
+    flex: 0 0 50%; /* This ensures each champion takes up half the width, making it 2 columns */
+    box-sizing: border-box; /* This makes sure padding and border are included in the width */
+}
+
+#nextChampions {
+    background: #fffeed;
+    padding: 10px;
+    border-radius: 8px;
+    margin: 20px 0; /* Adjust for space above and below */
 }
 
 .champion-section-title {
@@ -174,15 +204,17 @@ html, body {
 }
 
 .champion-entry {
+    margin: 0;
+    padding: 0;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 0;
 }
 
 .champion-entry a {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 5px;
 }
 
 .champion-ranking {
@@ -227,12 +259,12 @@ html, body {
 
     .question-card, .champion-recommendation, #endScreen {
         width: 80%;  /* Make these elements full width for smaller screens */
-        height: auto
+        height: auto;
         box-shadow: none;  /* Optionally, you can remove the shadow for a cleaner look on mobile */
     }
 
     .question-text {
-        font-size: 20px;  /* Reduce font size slightly for small screens */
+        font-size: 25px;  /* Reduce font size slightly for small screens */
     }
 
     .question-video {
@@ -251,6 +283,10 @@ html, body {
 
     .options button {
         margin: 10px 5px;  /* Reduced margin for buttons */
+    }
+   
+    #nextChampions .champion {
+        flex: 0 0 100%; /* Full width for small screens */
     }
 }
 
