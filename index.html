@@ -41,12 +41,9 @@
         <!-- End screen -->
         <div id="endScreen" style="display:none">
             <div class="champion-card">
-                <h2>Recommended Champions for You</h2>
-                
                 <!-- Above the #topChampions container -->
                 <h3 class="champion-section-title">Top 5 Recommended Champions</h3>
-                <p class="champion-section-description">Based on your answers, these champions suit your playstyle. Give them a try!</p>
-
+                <p class="champion-section-description">Based on your answers, these five champions suit your playstyle the closest. Give them a try!</p>
                 <!-- Top 5 Champions -->
                 <div id="topChampions">
                     <!-- Each champion will look something like:
@@ -63,12 +60,15 @@
                 <!-- Soft separator line -->
                 <hr class="separator">
 
+                <!-- Above the #topChampions container -->
+                <h3 class="champion-section-title">These champions somewh</h3>
+                <p class="champion-section-description">Based on your answers, these five champions suit your playstyle the closest. Give them a try!</p>
                 <!-- Next 10 Champions -->
                 <div id="nextChampions">
                     <!-- Dynamically populated by JavaScript, 2 rows of 5 champions -->
                 </div>
                 
-                <button onclick="resetApp()">Try again</button>
+                <button class="options-button" onclick="resetApp()">Try again</button>
             </div>
         </div>
     </div>

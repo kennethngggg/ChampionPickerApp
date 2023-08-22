@@ -52,7 +52,7 @@ html, body {
 }
 
 #riotLogo:hover {
-    content: url("Assets/riot_games_logo_red.png");
+    content: url("Assets/Riot Games logo (Red).png");
 }
 
 .navbar-right-logo {
@@ -65,6 +65,7 @@ html, body {
     padding: 20px;
     margin: 20px auto;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: auto;
     width: 500px;
     background-color: #FAFAFA;
     display: flex;
@@ -74,35 +75,38 @@ html, body {
 
 .question-text {
     font-size: 24px;
-    min-height: 70px;
+    min-height: 55px;
+    margin-top: 20px;
     margin-bottom: 20px;
+    vertical-align: middle; 
     color: var(--color-primary);
 }
 
 .question-video {
-    width: 300px;
-    height: 300px;
+    width: 400px;
+    height: 400px;
     display: block;  /* To center the video in the middle of the card */
     margin: 10px auto;  /* Top and bottom margin set to 10px, left and right margins auto to center the video */
     object-fit: cover; /* This will ensure that the video covers the entire dimension you've set without distorting its aspect ratio. Useful if your videos have varying aspect ratios. */
 }
 
-.options button {
+.options button, .options-button {
     margin: 20px 10px 10px 0;  /* top, right, bottom, left */
     padding: 10px 20px;
     font-size: 18px;
     background-color: var(--color-primary);
-    color: white;
+    color: var(--color-secondary);
     border: none;
     transition: 0.3s ease;
     border-radius: 4px;
 }
 
-.options button:hover {
+.options button:hover, .options-button:hover {
     background-color: var(--color-secondary);
     color: var(--color-primary);
     border: 1px solid var(--color-primary);  /* Adding a thin black border on hover */
 }
+
 
 .champion-recommendation h2, #endScreen h2 {
     font-size: 20px;
@@ -159,7 +163,7 @@ html, body {
 .champion-section-title {
     font-size: 24px;
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 1px;
     margin-top: 1px;  /* Adjust this value to decrease the margin above the title */
 }
 
@@ -223,6 +227,7 @@ html, body {
 
     .question-card, .champion-recommendation, #endScreen {
         width: 100%;  /* Make these elements full width for smaller screens */
+        height: auto
         box-shadow: none;  /* Optionally, you can remove the shadow for a cleaner look on mobile */
     }
 
@@ -232,6 +237,7 @@ html, body {
 
     .question-video {
         width: 80%;  /* Adjust video size to be a bit smaller on mobile devices */
+        height: auto
     }
 
     .options button {
