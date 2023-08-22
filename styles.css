@@ -84,7 +84,7 @@ html, body {
 
 .question-video {
     width: 400px;
-    height: auto
+    height: auto;
     display: block;  /* To center the video in the middle of the card */
     margin: 10px auto;  /* Top and bottom margin set to 10px, left and right margins auto to center the video */
     object-fit: cover; /* This will ensure that the video covers the entire dimension you've set without distorting its aspect ratio. Useful if your videos have varying aspect ratios. */
@@ -226,7 +226,7 @@ html, body {
     }
 
     .question-card, .champion-recommendation, #endScreen {
-        width: 100%;  /* Make these elements full width for smaller screens */
+        width: 80%;  /* Make these elements full width for smaller screens */
         height: auto
         box-shadow: none;  /* Optionally, you can remove the shadow for a cleaner look on mobile */
     }
@@ -237,9 +237,7 @@ html, body {
 
     .question-video {
         width: calc(100% - 40px);  /* This sets the width to the full width minus margins on either side */
-        padding-bottom: calc(100% - 40px);  /* This trick ensures a 1:1 aspect ratio */
-        position: relative; 
-        height: 0;
+        position: relative;
     }
 
     .question-video > video {
@@ -265,6 +263,5 @@ html, body {
 
     .question-video {
         width: calc(100% - 20px);  /* Adjust the margins as desired for very small screens */
-        padding-bottom: calc(100% - 20px);
     }
 }
