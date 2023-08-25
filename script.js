@@ -29,6 +29,17 @@ async function loadInitialData() {
     }
 }
 
+$(document).ready(function() {
+  // Check if user visited before
+  if(!localStorage.getItem('visitedBefore')) {
+    $('#introPopup').show();
+    localStorage.setItem('visitedBefore', 'true');
+  }
+
+  $('#startButton').click(function() {
+    $('#introPopup').hide();
+  });
+});
 
 async function fetchChampionData() {
     const response = await fetch('championData.xlsx');
