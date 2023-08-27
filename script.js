@@ -21,7 +21,7 @@ async function loadInitialData() {
     try {
         await Promise.all([
             fetchChampionData(),
-            fetchDDragonChampionData(latestDDragonVersion)  // Here's the change
+            fetchDDragonChampionData(latestDDragonVersion) 
         ]);
         displayQuestion();
     } catch (err) {
@@ -30,16 +30,16 @@ async function loadInitialData() {
 }
 
 $(document).ready(function() {
-  // Check if user visited before
-  if(!localStorage.getItem('visitedBefore')) {
-    $('#introPopup').show();
-    localStorage.setItem('visitedBefore', 'true');
-  }
-
-  $('#startButton').click(function() {
-    $('#introPopup').hide();
-  });
-});
+    // Check if user visited before
+    if(!localStorage.getItem('visitedBefore')) {
+      $('#introPopup').show(); // show the popup
+      localStorage.setItem('visitedBefore', 'true');
+    }
+  
+    $('#startButton').click(function() {
+      $('#introPopup').hide(); // hide the popup on click
+    });
+  }); 
 
 async function fetchChampionData() {
     const response = await fetch('championData.xlsx');
@@ -52,6 +52,7 @@ async function fetchChampionData() {
     const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
 
     questions = jsonData[0].slice(3); // Starting from column C (index 2)
+    totalQuestions = questions.length;
     videoFilenames = jsonData[1].slice(3); // Starting from column C (index 2)
     significanceFactors = jsonData[2].slice(3).map(Number); // Starting from column C and convert to numbers
 
@@ -68,13 +69,24 @@ async function fetchChampionData() {
 
 function displayQuestion() {
     const questionCard = document.querySelector('.question-text');
-    questionCard.textContent = questions[currentQuestionIndex];
-
     const videoElement = document.querySelector('.question-video');
     const videoSource = videoElement.querySelector('source');
 
+    // Start updating the content right away
+    questionCard.textContent = questions[currentQuestionIndex];
     videoSource.src = `Assets/Question videos/${videoFilenames[currentQuestionIndex]}`;
     videoElement.load();
+    updateProgressBar();
+
+    // Start fade-out of old content
+    questionCard.classList.add('fade-out');
+    videoElement.classList.add('fade-out');
+
+    setTimeout(() => {
+        // After fade-out completes, fade them back in
+        questionCard.classList.remove('fade-out');
+        videoElement.classList.remove('fade-out');
+    }, 100);
 }
 
 function adjustChampionScores(option) {
@@ -98,14 +110,31 @@ function adjustChampionScores(option) {
 }
 
 function handleOptionClick(option) {
-    adjustChampionScores(option);
-    currentQuestionIndex++;
+    const questionCard = document.querySelector('.question-text');
+    const videoElement = document.querySelector('.question-video');
 
-    if (currentQuestionIndex >= questions.length) {
-        endQuiz();
-    } else {
-        displayQuestion();
-    }
+    // Fade out the current question and video
+    questionCard.classList.add('fade-out');
+    videoElement.classList.add('fade-out');
+
+    setTimeout(() => {
+        adjustChampionScores(option);
+        currentQuestionIndex++;
+
+        if (currentQuestionIndex >= questions.length) {
+            endQuiz();
+        } else {
+            // Fade-in the new question and video
+            setTimeout(() => {
+                displayQuestion();  // This will handle the fade-in effect
+            }, 100);
+        }
+    }, 600);  // Adjusted based on the updated CSS transition duration
+}
+
+function updateProgressBar() {
+    let progressPercentage = ((currentQuestionIndex + 1) / totalQuestions) * 100;
+    document.querySelector(".progress-bar").style.width = progressPercentage + "%";
 }
 
 function createChampionElement(champion) {
@@ -136,9 +165,6 @@ function createChampionElement(champion) {
 
     return champElement;
 }
-
-
-
 
 function displayFinalChampionRecommendation() {
     const topChampions = getTopChampions(5);
@@ -180,9 +206,15 @@ function getTopChampions(topN) {
 
 function endQuiz() {
     document.querySelector('.question-card').style.display = 'none';
-    document.querySelector('#endScreen').style.display = 'block';
+    const endScreen = document.querySelector('#endScreen');
+    endScreen.style.display = 'block';
+    endScreen.classList.add('fade-in');
+    setTimeout(() => {
+        endScreen.classList.remove('fade-in');
+    }, 20); // A short delay before removing the class to initiate the fade-in transition.
     displayFinalChampionRecommendation();
 }
+
 
 function resetApp() {
     currentQuestionIndex = 0;
@@ -190,6 +222,9 @@ function resetApp() {
     document.querySelector('.question-card').style.display = 'block';
     document.querySelector('#endScreen').style.display = 'none';
     displayQuestion();
+    const progressBar = document.querySelector(".progress-bar");
+    progressBar.style.width = '0%';  // Reset progress bar width
+    document.querySelector(".question-progress").style.display = 'block';  // Make progress bar visible
 }
 
 window.onload = loadInitialData;

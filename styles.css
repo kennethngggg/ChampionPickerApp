@@ -37,11 +37,6 @@ html, body {
     justify-content: space-between;
 }
 
-.navbar-logo, .lol-logo, .navbar-right-logo {
-    display: inline-block; 
-    vertical-align: middle; 
-}
-
 .navbar-logo {
     height: 30px;
 }
@@ -74,13 +69,28 @@ html, body {
 }
 
 .popup-content {
-  background-color: #FAFAFA;
-  padding: 20px;
-  border-radius: 8px;
-  width: 80%;
-  max-width: 500px;
-  text-align: center;
+    background-color: #FAFAFA;
+    padding: 20px 40px; /* Added horizontal padding for a little spacing */
+    border-radius: 8px;
+    width: 80%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* This ensures that all content is centered horizontally */
+  }  
+
+  .popup-content img, .popup-content h2, .popup-content p {
+    align-self: center;
+  }  
+
+  #introPopup .popup-content img {
+    width: 80%; /* This will make the image stretch to the full width of its container. Adjust the percentage as needed. */
+    max-width: 500px; /* This will ensure the image doesn't grow beyond 500 pixels wide. Adjust as needed. */
+    height: auto; /* This ensures that the image maintains its original aspect ratio. */
+    margin: 20px 0; /* This gives a space above and below the image. Adjust the values as needed. */
+    display: block; /* This makes the image a block-level element, useful for centering using margins. */
 }
+
 
 /* Question Card Styles */
 .question-card, .champion-recommendation, #endScreen {
@@ -95,21 +105,47 @@ html, body {
     justify-content: center;
 }
 
+.question-progress {
+    height: 4px;  /* Adjust the height as needed */
+    background-color: #E5E5E5; /* This will serve as the background indicating the total length */
+    position: relative;  /* For positioning the inner bar */
+    margin-bottom: 1px; /* Space between the progress bar and question */
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: #00C853; /* Green color, adjust as needed */
+    width: 0%;  /* Initial state, no progress */
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: width 0.3s;  /* For a smooth transition effect */
+}
+
 .question-text {
     font-size: 24px;
     min-height: 55px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     vertical-align: middle; 
     color: var(--color-primary);
 }
 
+.video-container {
+    position: relative;
+    width: 100%; /* Keep the container width at 100% */
+    padding-top: 100%; 
+    background: url('Assets/placeholder\ video.png') center center no-repeat;
+    background-size: cover;
+}
+
 .question-video {
-    width: 400px;
-    height: auto;
-    display: block;  /* To center the video in the middle of the card */
-    margin: 10px auto;  /* Top and bottom margin set to 10px, left and right margins auto to center the video */
-    object-fit: cover; /* This will ensure that the video covers the entire dimension you've set without distorting its aspect ratio. Useful if your videos have varying aspect ratios. */
+    position: absolute;
+    top: 0;
+    left: 50%; /* Centering along with transform */
+    transform: translateX(-50%); /* For precise centering */
+    width: 90%; /* Set width to 90% */
+    height: 100%;
 }
 
 .options button, .options-button {
@@ -129,14 +165,27 @@ html, body {
     border: 1px solid var(--color-primary);  /* Adding a thin black border on hover */
 }
 
+.question-card, .question-video {
+    opacity: 1;
+    transition: opacity 0.6s ease-in-out;
+}
+
+.fade-out {
+    opacity: 0;
+}
+
+.fade-in {
+    opacity: 0;
+    transition: opacity 0.6s ease-in-out; /* Matches your fade-out duration */
+}
+
+#endScreen {
+    transition: opacity 0.6s ease-in-out;
+}
 
 .champion-recommendation h2, #endScreen h2 {
     font-size: 20px;
     color: var(--color-secondary);  /* Using the secondary color for sub-headings for a consistent theme */
-}
-
-#endScreen {
-    /* Keeps inherited properties from .question-card, .champion-recommendation, etc. */
 }
 
 #topChampions {
@@ -171,8 +220,8 @@ html, body {
 }
 
 .champion-logo {
-    width: 30px;
-    height: 30px;
+    width: 50px;
+    height: 50px;
     margin-left: 5px; /* Add or reduce the margin-left if needed */
 }
 
@@ -244,14 +293,6 @@ html, body {
     margin-right: 15px; /* Adjust as needed */
 }
 
-.champion-logo {
-    width: 50px; /* Adjust to the desired size */
-    height: 50px; /* Adjust to the desired size */
-}
-
-.champion-name {
-    margin-left: 10px; /* You can adjust this value as needed */
-}
 
 /* Added a main container style. You can wrap your main content with a div of this class */
 .main-container {
@@ -292,15 +333,14 @@ html, body {
     .question-video {
         width: calc(100% - 40px);  /* This sets the width to the full width minus margins on either side */
         position: relative;
+        background: url('Assets/placeholder\ video.png') center center no-repeat;
+        background-size: cover;
     }
 
-    .question-video > video {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
+    .video-container {
+        padding-top: 0%; 
+        background: url('Assets/placeholder\ video.png') center center no-repeat;
+        background-size: cover;
     }
 
     .options button {
@@ -309,17 +349,5 @@ html, body {
    
     #nextChampions .champion {
         flex: 0 0 100%; /* Full width for small screens */
-    }
-}
-
-
-/* For very small screens (like older phones) */
-@media screen and (max-width: 480px) {
-    .navbar-logo, .lol-logo, .navbar-right-logo {
-        height: 20px;  /* Adjust these values based on how they look */
-    }
-
-    .question-video {
-        width: calc(100% - 20px);  /* Adjust the margins as desired for very small screens */
     }
 }
