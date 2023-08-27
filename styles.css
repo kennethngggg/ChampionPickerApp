@@ -123,18 +123,17 @@ html, body {
 }
 
 .question-text {
-    font-size: 24px;
-    min-height: 55px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    vertical-align: middle; 
-    color: var(--color-primary);
+    display: flex;
+    align-items: center; /* For vertical alignment */
+    justify-content: center; /* For horizontal alignment, if desired */
+    margin: 10px 10px 10px 10px;  /* top, right, bottom, left */
+    min-height: 70px; /* Replace X with the minimum desired height of the question-text area. */
 }
 
 .video-container {
     position: relative;
-    width: 100%; /* Keep the container width at 100% */
-    padding-top: 100%; 
+    width: 100%;
+    padding-top: 100%;  /* This maintains a 1:1 aspect ratio */
     background: url('Assets/placeholder\ video.png') center center no-repeat;
     background-size: cover;
 }
@@ -142,9 +141,9 @@ html, body {
 .question-video {
     position: absolute;
     top: 0;
-    left: 50%; /* Centering along with transform */
-    transform: translateX(-50%); /* For precise centering */
-    width: 90%; /* Set width to 90% */
+    left: 50%;
+    transform: translateX(-50%);  /* For centering */
+    width: 90%; /* Set to 90% of the container */
     height: 100%;
 }
 
@@ -331,14 +330,15 @@ html, body {
     }
 
     .question-video {
-        width: calc(100% - 40px);  /* This sets the width to the full width minus margins on either side */
-        position: relative;
-        background: url('Assets/placeholder\ video.png') center center no-repeat;
-        background-size: cover;
+        width: 90%;  /* It's already 90%, but we can keep it for clarity */
+        position: absolute;  /* Keep it absolute positioned */
+        left: 50%;  
+        transform: translateX(-50%);  
+        height: auto;  /* Let the video decide its height based on its intrinsic aspect ratio */
     }
 
     .video-container {
-        padding-top: 0%; 
+        padding-top: 100%;  /* This maintains the 1:1 aspect ratio */
         background: url('Assets/placeholder\ video.png') center center no-repeat;
         background-size: cover;
     }
